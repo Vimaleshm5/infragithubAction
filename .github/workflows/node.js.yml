@@ -1,21 +1,25 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
 name: Node.js CI
 
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  
 
 jobs:
-  commandRun:
+  nodejs_Installation:
 
     runs-on: ubuntu-latest
 
     
 
     steps:
-     - name: simple code run
-       run: echo "Hello Javascript"
+     - uses: action/checkout@v5 
+     - name: node js
+       uses: actions/setup-node@v4
+       with:
+         node-version: '20.x'
+     - name: nodejs 20 install      
+       run: node -v
+     - name: node js file run   
+       run: node hello.js
